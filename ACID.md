@@ -57,3 +57,17 @@ For example, you have a database, you update a value X in the database, and now 
 This property ensures that multiple transactions can occur concurrently without leading to the inconsistency of the database state. Transactions occur independently without interference. Changes occurring in a particular transaction will not be visible to any other transaction until that particular change in that transaction is written to memory or has been committed.
 
 This property ensures that when multiple transactions run at the same time, the result will be the same as if they were run one after another in a specific order. This property prevents issues such as dirty reads (reading uncommitted data), non-repeatable reads (data changing between two reads in a transaction), and phantom reads (new rows appearing in a result set after the transaction starts).
+
+#### Database implementation of isolation
+Each DBMS implements the Isolation level differently.
+
+* Pessimistic Approach – Row level locks, table locks, and page locks to avoid lost updates.
+
+* Optimistic Approach – No locks, just track if things changed and fail the transaction if so
+Repeatable read “locks” the rows it reads but it could be expensive if you read a lot of rows. Postgres implements Repeated read as a snapshot. That is why you do not get phantom reads with postgres.
+Serializable is usually implemented with optimistic concurrency control.
+
+### Durability: Persisting Changes
+This property ensures that once the transaction has completed execution, the updates and modifications to the database are stored in and written to disk and they persist even if a system failure occurs. These updates now become permanent and are stored in non-volatile memory. In the event of a failure, the DBMS can recover the database to the state it was in after the last committed transaction, ensuring that no data is lost.
+
+Example: After successfully transferring money from Account A to Account B, the changes are stored on disk. Even if there is a crash immediately after the commit, the transfer details will still be intact when the system recovers, ensuring durability.
