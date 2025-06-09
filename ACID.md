@@ -40,3 +40,20 @@ It guarantees that any transaction will take the database from one consistent st
 In simple terms, a transaction should only take the database from one valid state to another. 
 
 If a transaction violates any database rules or constraints, it should be rejected, ensuring that only consistent data exists after the transaction.
+
+#### Consistency in data
+This represented the state that actually persisted in the data. This mainly involves enforcing.
+
+* foreign keys referential integrity between two tables or documents an example can be seen when creating a user-like system, when a user(s) like an image or blog, the blog or image should persist the actual number of likes it has got from the user table.
+
+* atomicity – data should persist across the database.
+
+* Isolation – based on the isolation level which we will talk about later should return correct reads from two concurrent parallel tables.
+
+#### Consistency in reads
+For example, you have a database, you update a value X in the database, and now the next read must give you value X. That is what consistency in reading means. If a transaction committed a change will a new transaction immediately see the change? when this does not work we get an inconsistent database. This affects the system as a whole. 
+
+### Isolation: Ensuring Concurrent Transactions Don't Interfere
+This property ensures that multiple transactions can occur concurrently without leading to the inconsistency of the database state. Transactions occur independently without interference. Changes occurring in a particular transaction will not be visible to any other transaction until that particular change in that transaction is written to memory or has been committed.
+
+This property ensures that when multiple transactions run at the same time, the result will be the same as if they were run one after another in a specific order. This property prevents issues such as dirty reads (reading uncommitted data), non-repeatable reads (data changing between two reads in a transaction), and phantom reads (new rows appearing in a result set after the transaction starts).
