@@ -54,6 +54,31 @@ A relation that is in First Normal Form and every non-primary-key attribute is f
 
 It Eliminates partial dependencies by ensuring that non-key attributes depend only on the primary key. `What this means, in essence, is that there should be a direct relationship between each column and the primary key, and not between other columns`
 
+Example:
+
+|Course ID	|Course Name |	Professor |	Department|
+|--------- | ---------- | --------- | -------- |
+|101	|Biology |	Dr. Smith	 |Biology |
+|102	|Chemistry |	Dr. Johnson	| Chemistry |
+|103	|Physics |	Dr. White	 |Physics |
+
+At first glance, this table appears straightforward. However, it doesn’t satisfy 2NF because the “Professor” column is functionally dependent only on the “Course ID” but not on the “Department.” To follow 2NF, let’s refine the structure:
+
+|Course ID	|Course Name |Professor_ID|	Professor |	Department|
+|--------- | ---------- |--------------| --------- | -------- |
+|101	|Biology |001|	Dr. Smith	 |Biology |
+|102	|Chemistry |	002 | Dr. Johnson	| Chemistry |
+|103	|Physics | 003|	Dr. White	 |Physics |
+
+
+|Professor_ID|	Professor |	Department|
+|--------- | ---------- |--------------| 
+|001|	Dr. Smith	 |Biology |
+|002 | Dr. Johnson	| Chemistry |
+| 003|	Dr. White	 |Physics |
+
+By breaking down the original table into two separate tables, one collecting course-related details and the other focusing only on professors and departments, we follow 2NF. This separation resolves the issue of partial dependency, ensuring each table’s columns are functionally dependent on the primary keys.
+
  ### Third Normal Form (3NF)
 Removes transitive dependencies by ensuring that non-key attributes depend only on the primary key. This level of normalization builds on 2NF.
 
