@@ -69,3 +69,4 @@ relation R is in 5NF if and only if it satisfies the following conditions:
 
 `It cannot be further non loss decomposed (join dependency)`
 
+
