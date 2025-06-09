@@ -28,6 +28,27 @@ This normalization level ensures that each column in your data contains only ato
 
 It is like saying that each cell in a spreadsheet should hold just one piece of information. 1NF ensures atomicity of data, with each column cell containing only a single value and each column having unique names.
 
+ Let’s look at a simplified table that shows the data about the students:
+
+ |Student_ID| Name | Course |
+ |----------|------|-------|
+ |001	    |John  |	Math, Physics |
+ |002	    |Sarah	| Chemistry |
+ |003	    | Michael	| Math, Biology |
+
+This table shows a violation of 1NF due to the “Courses” column containing multiple values, breaching the atomicity principle. To align with 1NF, the table should be restructured:
+
+|Student_ID| Name | Course |
+ |----------|------|-------|
+ |001	    |John  |	Math |
+ |001	    |John  |	physics |
+ |002	    |Sarah	| Chemistry |
+ |003	    | Michael	| Math |
+ |003	    | Michael	| Biology |
+
+ In this revised structure, each row represents a single student-course pairing, following the atomic value requirement of 1NF. By splitting the original “Courses” column into distinct rows, the data now meets the 1NF criteria, enabling smoother data retrieval and manipulation.
+
+
 ### Second Normal Form (2NF)
 A relation that is in First Normal Form and every non-primary-key attribute is fully functionally dependent on the primary key, then the relation is in Second Normal Form (2NF).
 
