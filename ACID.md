@@ -19,4 +19,24 @@ These operations may involve reading or writing data to the database. To maintai
 Usually, transactions are used to change and modify data, however, it is perfectly normal to have a read-only transaction example you want to generate a report and you want to get a consistent snapshot based on the time of transaction.
 
 ## The Four ACID Properties
+![alt text](image-1.png)
 
+### Atomicity: "All or Nothing"
+Atomicity ensures that a transaction is atomic, it means that either the entire transaction completes fully or doesn't execute at all. 
+
+There is no in-between state i.e. transactions do not occur partially. If a transaction has multiple operations, and one of them fails, the whole transaction is rolled back, leaving the database unchanged. 
+
+This avoids partial updates that can lead to inconsistency.
+
+* Commit: If the transaction is successful, the changes are permanently applied.
+
+* Abort/Rollback: If the transaction fails, any changes made during the transaction are discarded.
+
+### Consistency: Maintaining Valid Data States
+Consistency ensures that a database remains in a valid state before and after a transaction. 
+
+It guarantees that any transaction will take the database from one consistent state to another, maintaining the rules and constraints defined for the data. 
+
+In simple terms, a transaction should only take the database from one valid state to another. 
+
+If a transaction violates any database rules or constraints, it should be rejected, ensuring that only consistent data exists after the transaction.
